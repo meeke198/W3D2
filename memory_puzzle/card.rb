@@ -4,7 +4,7 @@ class Card
         ('A'..'Z').to_a.sample
     end
     
-    attr_reader :value
+    attr_reader :value :face_up
 
     def initialize(value)
         @value = value
