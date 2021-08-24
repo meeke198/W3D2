@@ -3,6 +3,8 @@ require_relative "player"
 
 class Game
 
+    attr_reader :board
+
     def initialize(board_size)
         @board = Board.new(board_size)
         @player = Player.new
@@ -18,12 +20,14 @@ class Game
             second_guess = @player.get_position
             @board.reveal(second_guess)
             @board.render
-            if @board[first_guess] != @board[second_guess]
+            if @board[first_guess].value != @board[second_guess].value
                 sleep(1)
                 @board.hide(first_guess)
                 @board.hide(second_guess)
             end
-            @board.render
+            system("clear")
+            puts
+            puts
         end
         puts "You won!"
     end

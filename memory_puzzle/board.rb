@@ -99,13 +99,13 @@ class Board
     end
 
     def reveal(guessed_pos)
-        @grid[guessed_pos].reveal
-        @grid[guessed_pos].value
+        self[guessed_pos].reveal
+        self[guessed_pos].value
     end
 
     def hide(guessed_pos)
-        @grid[guessed_pos].hide
-        @grid[guessed_pos].value
+        self[guessed_pos].hide
+        self[guessed_pos].value
     end
 
 
