@@ -1,4 +1,5 @@
 require_relative "card"
+
 class Board
     def initialize(num)
         raise "Number must be even" if num.odd?
@@ -47,18 +48,16 @@ class Board
         end
         position
     end
+
     def in_grid?(value)
         @grid.each do |row|
             row.each do |ele|
-                if ele == "_"
-                    next
-                elsif ele.value == value
-                    return true
-                end
+                return true if ele.instance_of?(Card) && ele.value == value
             end
         end
         false
     end
+    
     # def place_card(card)
     #     placed = false
     #     while placed = false
@@ -80,6 +79,7 @@ class Board
         row, col = position
         @grid[row][col] == '_'
     end
+
     def render
         @grid.each do |row|
             # arr = []
@@ -93,5 +93,21 @@ class Board
             .join(" "))
         end
     end 
+
+    def won?
+        @grid.none? { |row| row.any? { |card| card.face_up == false } }
+    end
+
+    def reveal(guessed_pos)
+        @grid[guessed_pos].reveal
+        @grid[guessed_pos].value
+    end
+
+    def hide(guessed_pos)
+        @grid[guessed_pos].hide
+        @grid[guessed_pos].value
+    end
+
+
 end
 
