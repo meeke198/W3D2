@@ -1,5 +1,11 @@
 class Card
+    
+    def self.generate_value
+        ('A'..'Z').to_a.sample
+    end
+    
     attr_reader :value
+
     def initialize(value)
         @value = value
         @face_up = false
